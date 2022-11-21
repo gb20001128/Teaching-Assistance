@@ -1,0 +1,54 @@
+.video-box {
+	width: 90%;
+	/*height: 590px;*/
+	/*height: 670px;*/
+	padding: 30px;
+}
+
+.video-box td span {
+	top: 2px;
+	margin: 0 10px 0 5px;
+}
+
+.video-box:first-child {
+	display: block;
+}
+
+.video-box:nth-child(2) {
+	display: none;
+}
+
+.video-box:nth-child(3) {
+	display: none;
+}
+
+.video-box:nth-child(4) {
+	display: none;
+}
+
+.video-box:nth-child(5) {
+	display: none;
+}
+
+.video-box tr th, .video-box tr td {
+	width: 50px;
+	text-align: center;
+}
+
+.video-box tr td:nth-child(1) {
+	text-align: left;
+}
+
+.video-box tr th:first-child {
+	width: 50px;
+	text-align: left;
+}
+
+.video-box a {
+	cursor: pointer;
+}
+
+.upload button {
+	margin: 0 30px 25px 0;
+	width: 80px;
+}

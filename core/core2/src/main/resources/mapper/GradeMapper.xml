@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.mapper.GradeMapper">
+
+
+    <update id="updateCount" parameterType="grade">
+        UPDATE t_grade set data_base=#{dataBase},data_structure=#{dataStructure},
+                           composition_principle=#{compositionPrinciple},
+                           network_technique=#{networkTechnique},
+                           operating_system=#{operatingSystem},
+                           count_grade=
+                                   data_structure
+                                   +data_base
+                                   +composition_principle
+                                   +network_technique
+                                   +operating_system
+
+        WHERE id=#{id}
+    </update>
+
+</mapper>

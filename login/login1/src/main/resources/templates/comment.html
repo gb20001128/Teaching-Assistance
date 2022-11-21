@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学习社区</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/community1.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}" />
+
+    <style>
+        #like{
+            font-size: 1.5rem;
+        }
+        #like:hover{
+            font-size: 1.8rem;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+<div th:replace="common :: function1"></div>
+
+    <div class="clearfix"></div>
+
+    <!--主体内容开始-->
+    <div class="body center-block">
+        <div class="body-left">
+            <div class="body-left">
+                <ul>
+                    <li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+                    <li ><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+                    <li ><a th:href="@{/documentResources}"><span
+                            class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+                    <li class="li-active"><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+                    </li>
+                    <li><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+                    <li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="body-right">
+            <div class="body-r-box">
+                <div class="body-r-question">
+                    <div style="overflow: auto; height: 100%; padding-top: 20px;">
+                        <div class="question">
+                            <div class="whitebody">
+                                <div class="comment_lists">
+                                    <dl>
+                                        <dd class="name" value="hahah">
+                                            <div th:text="${problem.name}" class="forname"
+                                                        style="font-size: 2.5rem;color:rgb(42 52 66);top: 7px;">
+                                             名字
+                                            </div>
+                                            <div th:text="${problem.time}" class="questiontime"  ></div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div th:text="${problem.content}" class="forwords"
+                                                        style="font-size: 1.6rem;">
+                                   问题内容
+                                </div>
+                                <br>
+                                <div  class="forimgs" style="width: 200px">
+                                    <img th:src="@{'http://localhost:8080/problem/'+${problem.photoName}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="answer">
+                            <div class="answer-item" >
+                                <div  th:each="comment,stat:${problem.comments}" class="answer-comment">
+                                    <div class="answer-comment-item">
+                                        <div class="comment-info">
+                                            <div class="question-rigth">
+                                                <span  th:text="${comment.name}"></span>
+                                                <span  th:text="${comment.time}" class="questiontimes" style="font-size: 1.3rem;color:#9c9999; "></span>
+                                            </div>
+                                            <span  th:text="${comment.content}" class="comment_p">
+
+                                            </span>
+                                            <a id="like" style="float: right;"
+                                               th:href="@{'/like/'+${comment.id}+'/'+${problem.id}}">赞</a>
+                                            <span style="float: right" >&nbsp;&nbsp;</span>
+                                            <span style="float: right"
+                                                  th:if="${comment.likes ne 0}"
+                                                  th:text="${comment.likes}"></span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comment-edit" id="">
+                                    <form action="" method="post">
+                                        <p>
+                                            <input type="text" class="form-control" value="test001"
+                                                placeholder="请输入你的回答" />
+                                            <button type="submit" class="btn btn-info" style="margin-bottom: 4px;">
+                                                <!--id="publish-new"-->>我要回答</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="body-r-answer">
+
+                    <p>
+
+                    <form method="post" th:action="@{/answerQuestion}" >
+                        <input type="hidden" th:value="${problem.id}" id="hiddenId" name="id">
+                        <textarea id="key" name="content" rows="5" cols="150" placeholder="请输入..." style="resize: none;"></textarea>
+                        <button  type="submit" class="btn btn-info an-btn" id="publish-new">我要回答</button>
+                    </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+
+    <!--底部页脚开始-->
+    <div class="footer"></div>
+    <!--底部页脚结束-->
+
+
+
+
+
+
+</body>
+
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/base.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/wangEditor.min.js}" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+    // 或者 var editor = new E( document.getElementById('#editor') )
+    editor.create();
+
+
+    $('.commentBtn').click(function () {
+        var _id = $(this).index();
+
+        $(this).parent().parent().parent('.answer-info').siblings('.comment-edit').slideToggle();
+
+    });
+
+</script>
+
+</html>
+
+<script th:src="@{/js/jquery-1.7.2.js}"></script>
+
+
+<!--ajax判断用户昵称是否已存在-->
+<script type="text/javascript">
+    //页面加载完成之后
+    // $(function () {
+    //     $("#publish-new").click(function () {
+    //
+    //         var code1 = document.getElementById('key');
+    //         var code2 = document.getElementById('hiddenId');
+    //
+    //         let content = code1.value;
+    //         let id = code2.value;
+    //
+    //
+    //         $.getJSON("http://localhost:81/answerQuestion/" +id+"/"+content, null, function (data) {
+    //
+    //             if (data) {
+    //                 alert("评论成功！");
+    //
+    //             } else {
+    //                 alert("评论失败！");
+    //             }
+    //         });
+    //     });
+    // });
+</script>

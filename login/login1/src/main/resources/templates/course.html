@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>2课表</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" th:href="@{/css/box.css}">
+</head>
+
+
+
+<body>
+
+<div th:replace="common :: function1"></div>
+
+	<div class="clearfix"></div>
+
+	<!--主体内容开始-->
+	<div class="body center-block">
+		<div class="body-left">
+			<ul>
+				<li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+				<li class="li-active"><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+				<li ><a th:href="@{/documentResources}"><span
+						class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+				<li><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+				</li>
+				<li><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+				<li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+			</ul>
+		</div>
+		<div class="body-right">
+			<div class="body-r-box">
+				<div class="body-r-nav">
+					<ul>
+						<li class="body-r-nav-active"><a>第一周</a></li>
+						<li><a>第二周</a></li>
+						<li><a>第三周</a></li>
+						<li><a>第四周</a></li>
+						<li><a>第五周</a></li>
+						<li><a>第六周</a></li>
+						<li><a>第七周</a></li>
+					</ul>
+					<div class="body-r-nav-r">
+						<div class="search">
+						</div>
+					</div>
+				</div>
+				<div class="body-r-body">
+
+					<div class="video-box" id="video-box-one">
+						<table class="table table-hover">
+							<tr>
+								<th>时间</th>
+								<th>周一</th>
+								<th>周二</th>
+								<th>周三</th>
+								<th>周四</th>
+								<th>周五</th>
+							</tr>
+							<tr>
+								<td></span>07:30-08:10</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>早读</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>08:30-10:05</td>
+								<td></td>
+								<td>应用写作学 2-402</td>
+								<td></td>
+								<td>数据结构 2-401</td>
+								<td>数据结构 科技楼B505</td>
+							</tr>
+							<tr>
+								<td></span>10:20-11:55</td>
+								<td>操作系统 1-202</td>
+								<td></td>
+								<td></td>
+								<td>劳动保障 2-408</td>
+								<td>应用写作学 2-401</td>
+							</tr>
+							<tr>
+								<td></span>14:00-15:35</td>
+								<td>软件工程 2-402</td>
+								<td></td>
+								<td>软件工程 科技楼B505</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>15:50-17:25</td>
+								<td></td>
+								<td>操作系统 科技楼B505</td>
+								<td>劳动保障 2-401</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>18:00-20:05</td>
+								<td>计算机网络技术 2-002B</td>
+								<td>信息系统设计与分析 2-002B</td>
+								<td>计算机组成原理 2-107</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="video-box" id="video-box-two">
+						<table class="table table-hover">
+							<tr>
+								<th>时间</th>
+								<th>周一</th>
+								<th>周二</th>
+								<th>周三</th>
+								<th>周四</th>
+								<th>周五</th>
+							</tr>
+							<tr>
+								<td></span>07:30-08:10</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>早读</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>08:30-10:05</td>
+								<td>操作系统 1-301</td>
+								<td></td>
+								<td>应用写作学 2-203</td>
+								<td>数据结构 科技楼B505</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>10:20-11:55</td>
+								<td></td>
+								<td>操作系统 科技楼B505</td>
+								<td>软件工程 3-205</td>
+								<td></td>
+								<td>应用写作学 2-304</td>
+							</tr>
+							<tr>
+								<td></span>14:00-15:35</td>
+								<td></td>
+								<td>劳动保障 1-205</td>
+								<td></td>
+								<td></td>
+								<td>软件工程 科技楼B505</td>
+							</tr>
+							<tr>
+								<td></span>15:50-17:25</td>
+								<td>数据结构 2-303</td>
+								<td></td>
+								<td></td>
+								<td>劳动保障 2-403</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>18:00-20:05</td>
+								<td>信息系统设计与分析 2-204</td>
+								<td>计算机网络技术 2-002B</td>
+								<td>英语二 2-502</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="video-box" id="video-box-three">
+						<table class="table table-hover">
+							<tr>
+								<th>时间</th>
+								<th>周一</th>
+								<th>周二</th>
+								<th>周三</th>
+								<th>周四</th>
+								<th>周五</th>
+							</tr>
+							<tr>
+								<td></span>07:30-08:10</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>早读</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>08:30-10:05</td>
+								<td>软件工程 2-103</td>
+								<td></td>
+								<td></td>
+								<td>应用写作学 2-305</td>
+								<td>操作系统 科技楼B505</td>
+							</tr>
+							<tr>
+								<td></span>10:20-11:55</td>
+								<td>操作系统 1-202</td>
+								<td>数据结构 3-203</td>
+								<td>软件工程 科技楼B505</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>14:00-15:35</td>
+								<td></td>
+								<td>劳动保障 3-303</td>
+								<td></td>
+								<td>数据结构 科技楼B505</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>15:50-17:25</td>
+								<td>应用写作学 2-202</td>
+								<td></td>
+								<td>劳动保障 3-304</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>18:00-20:05</td>
+								<td></td>
+								<td>计算机网络技术 2-414</td>
+								<td>晚自习</td>
+								<td>计算机组成原理 2-102</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="video-box" id="video-box-four">
+						<table class="table table-hover">
+							<tr>
+								<th>时间</th>
+								<th>周一</th>
+								<th>周二</th>
+								<th>周三</th>
+								<th>周四</th>
+								<th>周五</th>
+							</tr>
+							<tr>
+								<td></span>07:30-08:10</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>早读</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>08:30-10:05</td>
+								<td>应用写作学 2-402</td>
+								<td></td>
+								<td></td>
+								<td>数据结构 科技楼B505</td>
+								<td>操作系统 科技楼B505</td>
+							</tr>
+							<tr>
+								<td></span>10:20-11:55</td>
+								<td></td>
+								<td>操作系统 1-202</td>
+								<td>马原 2-103</td>
+								<td>社会保障 2-408</td>
+								<td>应用写作学 2-303</td>
+							</tr>
+							<tr>
+								<td></span>14:00-15:35</td>
+								<td></td>
+								<td>软件工程 3-203</td>
+								<td>软件工程 科技楼B505</td>
+								<td></td>
+								<td>马原 2-002A</td>
+							</tr>
+							<tr>
+								<td></span>15:50-17:25</td>
+								<td>劳动保障 3-203</td>
+								<td></td>
+								<td>数据结构 2-214</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>18:00-20:05</td>
+								<td></td>
+								<td>晚自习</td>
+								<td>晚自习</td>
+								<td>计算机组成原理 2-102</td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+					<div class="video-box" id="video-box-five">
+						<table class="table table-hover">
+							<tr>
+								<th>时间</th>
+								<th>周一</th>
+								<th>周二</th>
+								<th>周三</th>
+								<th>周四</th>
+								<th>周五</th>
+							</tr>
+							<tr>
+								<td></span>07:30-08:10</td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td>早读</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>08:30-10:05</td>
+								<td>信息系统设计与分析 1-301</td>
+								<td></td>
+								<td></td>
+								<td>数据结构 4-401</td>
+								<td>数据结构 科技楼B505</td>
+							</tr>
+							<tr>
+								<td></span>10:20-11:55</td>
+								<td></td>
+								<td>计算机网络技术 1-301</td>
+								<td></td>
+								<td>劳动保障 2-408</td>
+								<td>应用写作学 2-402</td>
+							</tr>
+							<tr>
+								<td></span>14:00-15:35</td>
+								<td>英语二 1-302</td>
+								<td>英语二 1-301</td>
+								<td>英语二 1-302</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>15:50-17:25</td>
+								<td></td>
+								<td></td>
+								<td>信息系统设计与分析 1-401</td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></span>18:00-20:05</td>
+								<td></td>
+								<td>晚自习</td>
+								<td>晚自习</td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--主体内容结束-->
+
+	<!--底部页脚开始-->
+	<div class="footer"></div>
+	<!--底部页脚结束-->
+
+	<!--用户信息开始-->
+	<div class="mask" id="mask">
+		<div class="mask-box" id="mask-box">
+			<div class="content">
+				<form action="" method="post">
+					<p><span>帐号类型：</span><span> 学生帐号</span></p>
+					<p><span>用户名： </span><span> 123</span></p>
+					<p><span>修改密码</span></p>
+					<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="设置新密码"></p>
+					<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="确认新密码"></p>
+					<p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="exit"
+							class="btn btn-danger">退出</button></p>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<!--用户信息结束-->
+
+	<!--登录框开始-->
+	<div class="login-box" id="login-box">
+		<div class="login">
+			<form action="" method="post">
+				<p><span>用户登录</span></p>
+
+				<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名"></p>
+				<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入密码"></p>
+				<p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="login-exit"
+						class="btn btn-danger">退出</button></p>
+			</form>
+		</div>
+	</div>
+	<!--登录框结束-->
+</body>
+
+<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/upload.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

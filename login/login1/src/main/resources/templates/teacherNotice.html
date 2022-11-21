@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>教师通知</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/notice.css}" />
+</head>
+
+
+<body>
+<div th:replace="common :: function1"></div>
+
+<div class="clearfix"></div>
+
+<!--主体内容开始-->
+<div class="body center-block">
+	<div class="body-left">
+		<ul>
+			<li class="li-active"><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+			<li><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+			<li ><a th:href="@{/documentResources}"><span
+					class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+			<li><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+			</li>
+			<li><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+			<li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+		</ul>
+	</div>
+		<div class="body-right">
+			<div class="body-r-box">
+				<div class="body-r-nav">
+					<ul>
+						<li class="body-r-nav-active"><a>通知</a></li>
+						<li><a>发布通知</a></li>
+						<li></li>
+						<li th:text="${msg}" style="color: red;font-size: 1.5rem;"></li>
+						<li></li>
+						<a th:href="@{/teacherNotice}"> <button type="button" class="btn btn-info">刷新</button></a>
+					</ul>
+					<div class="body-r-nav-r">
+						<div class="search">
+						</div>
+					</div>
+				</div>
+				<div class="body-r-body">
+					<div class="video-box" id="video-box-one" style="display: block;">
+						<table class="table table-hover">
+							<tr>
+								<th>教师</th>
+								<th>通知内容</th>
+								<th>总回复</th>
+								<th>发布时间</th>
+								<th>其他</th>
+							</tr>
+							<tr th:each="notice,stat:${notices}">
+								<td th:text="${notice.teacherName}"></td>
+								<td th:text="${notice.content}"></td>
+								<td th:text="${notice.replyAll}"></td>
+								<td th:text="${notice.time}"></td>
+								<td><a th:href="@{'/receiveNotice/'+${notice.id}}">收到</a>
+									<a th:href="@{'/deleteNotice/'+${notice.id}+'/'+${notice.teacherName}}"
+									   style="margin-left: 20px" onclick="javascript:return del();">删除</a>
+								</td>
+							</tr>
+						</table>
+
+					</div>
+					<div class="video-box" id="video-box-two">
+						<!-- <div class="upload">
+							<button type="button" class="btn btn-success" id="upload-btn">上传</button>
+							<button type="button" class="btn btn-info">刷新</button>
+						</div>-->
+						<textarea name="" id="notice" cols="100" rows="9" placeholder="请输入您要发布的通知..."></textarea>
+						<button type="button" id="sendNotice" class="btn">发布</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--主体内容结束-->
+
+	<!--底部页脚开始-->
+	<div class="footer"></div>
+	<!--底部页脚结束-->
+
+	<!--用户信息开始-->
+	<div class="mask" id="mask">
+		<div class="mask-box" id="mask-box">
+			<div class="content">
+				<form action="" method="post">
+					<p><span>帐号类型：</span><span> 学生帐号</span></p>
+					<p><span>用户名： </span><span> 123</span></p>
+					<p><span>修改密码</span></p>
+					<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="设置新密码"></p>
+					<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="确认新密码"></p>
+					<p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="exit"
+							class="btn btn-danger">退出</button></p>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<!--登录框开始-->
+	<div class="login-box" id="login-box">
+		<div class="login">
+			<form action="" method="post">
+				<p><span>用户登录</span></p>
+
+				<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名"></p>
+				<p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入密码"></p>
+				<p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="login-exit"
+						class="btn btn-danger">退出</button></p>
+			</form>
+		</div>
+	</div>
+	<!--登录框结束-->
+</body>
+
+<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/upload.js" type="text/javascript" charset="utf-8"></script>
+
+</html>
+
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/base.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/jquery-1.7.2.js}"></script>
+
+
+<!--ajax判断用户昵称是否已存在-->
+<script type="text/javascript">
+	//页面加载完成之后
+	$(function () {
+		$("#sendNotice").click(function () {
+
+			var code = document.getElementById('notice');
+
+			let notice = code.value;
+
+			$.getJSON("http://gb8888.com:81/sendNotice/" + notice, null, function (data) {
+
+				if (data) {
+					alert("发布成功！");
+
+				} else {
+					alert("发布失败！\n您没有权限");
+				}
+			});
+		});
+	});
+</script>
+
+<script type="text/javascript">
+
+	function del() {
+		var msg = "删除不可恢复\n您确定要删除吗 ?";
+		if (confirm(msg) == true) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+</script>

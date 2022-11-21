@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>成绩修改</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/box.css}" />
+</head>
+
+
+
+<body>
+
+<div th:replace="common :: function1"></div>
+
+	<div class="clearfix"></div>
+
+	<!--主体内容开始-->
+	<div class="body center-block">
+		<div class="body-left">
+			<div class="body-left">
+				<ul>
+					<li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+					<li ><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+					<li ><a th:href="@{/documentResources}"><span
+							class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+					<li><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+					</li>
+					<li class="li-active"><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+					<li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="body-right">
+			<div class="body-r-box">
+				<div class="body-r-nav">
+					<ul>
+						<li class="body-r-nav-active"><a>成绩修改</a></li>
+					</ul>
+					<div class="body-r-nav-r">
+						<div class="search">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Recipient's username"
+									aria-describedby="basic-addon2">
+								<!--<span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>-->
+								<button type="button" class="btn btn-default" aria-label="Left Align">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+								<!--<span class="glyphicon glyphicon-search"></span>-->
+							</div>
+						</div>
+					</div>
+				</div>
+				<br>
+				<br>
+				<br>
+				<form th:action="@{/updateThisGrade}" method="post">
+					<input type="hidden" name="id" th:value="${id}">
+				姓名：<span  th:text="${grade.name}" th:name="${grade.name}" style="display: inline;"></span><br><br>
+				数据结构：<br><input name="dataStructure" type="text" th:value="${grade.dataStructure}" style="display: inline;margin-left: 150px;width: 70px"><br>
+				计算机组成原理：<br><input name="compositionPrinciple" type="text" th:value="${grade.compositionPrinciple}" style="display: inline;margin-left: 150px;width: 70px"><br>
+				数据库应用：<br><input name="dataBase" type="text" th:value="${grade.dataBase}"style="display: inline;margin-left: 150px;width: 70px"><br>
+				计算机网络技术：<br><input name="networkTechnique" type="text" th:value="${grade.networkTechnique}" style="display: inline;margin-left: 150px;width: 70px"><br>
+				操作系统：<br><input name="operatingSystem" type="text" th:value="${grade.operatingSystem}" style="display: inline;margin-left: 150px;width: 70px"><br><br>
+					<button type="submit" class="btn btn-info" >修改成绩</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!--主体内容结束-->
+
+	<!--底部页脚开始-->
+	<div class="footer"></div>
+	<!--底部页脚结束-->
+
+
+</body>
+
+<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/upload.js" type="text/javascript" charset="utf-8"></script>
+
+
+</html>
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/base.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/jquery-1.7.2.js}"></script>

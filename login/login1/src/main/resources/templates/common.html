@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+</head>
+<body>
+
+<!--顶部标题栏开始-->
+<div th:fragment="function1" class="head center-block">
+    <div class="head-nav">
+        <div class=" head-left">
+            <span>教学辅助系统</span>
+        </div>
+        <div class=" head-right">
+
+            <div class="status">
+                <a id="user">
+                    <p><span th:text="${session.userName}" class="glyphicon glyphicon-user"></span></p>
+                </a>
+                <a id="login" th:href="@{/tuichu}">
+                    <p><span class="glyphicon glyphicon-off">退出登录</span></p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!--顶部标题栏结束-->
+
+</body>
+</html>

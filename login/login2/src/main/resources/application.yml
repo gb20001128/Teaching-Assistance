@@ -1,0 +1,108 @@
+server:
+  port: 8160
+
+spring:
+  application:
+    name: cloud-login
+
+  #配置Nacos
+  cloud:
+    nacos:
+      discovery:
+        #配置Nacos地址
+        server-addr: localhost:8848
+
+    #Sentinel的配置(Sentinel是懒加载,需要让此微服务先打出一个请求才能被Sentinel监控)
+    sentinel:
+      transport:
+        #配置Sentinel dashboard地址(Sentinel流量管理的网站地址),默认端口是8080,我改了8888
+        dashboard: localhost:8080
+        #默认8719,假如被占用了会自动从8719开始依次+1扫描。直至找到未被占用的端口
+        port: 8719
+
+
+
+  # 配置数据源信息
+  datasource:
+    # 配置数据源类型
+    type: com.zaxxer.hikari.HikariDataSource
+    # 配置连接数据库信息
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://1.15.73.202:3306/graduation_project?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: e7000e857573dec6
+
+
+
+  redis:
+    #    url: redis://@192.168.200.139:6400
+    url: redis://wsjgb8080@1.15.73.202:6379
+    client-type: jedis                   #jedis是redis的java客户端,还可以切换成 Lettuce
+    jedis:
+      pool:
+        max-active: 10
+
+
+
+ #发邮件用到的
+  mail:
+    username: 2501956263@qq.com
+    password: zuxxmukhhygxecfa
+    host: smtp.qq.com
+    #开启ssl安全连接
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+
+
+
+
+#mybatis-plus的配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启SQL日志打印
+
+  #设置MyBatis-Plus的全局配置
+  global-config:
+    db-config:
+      table-prefix: t_                                       #设置实体类所对应的表的统一前缀(t_实体类名=表名)
+      #id-type: auto                                          #设置统一的主键生成策略(自动递增)
+
+  #配置类型别名所对应的包(包下所有实体类的别名是类名)
+  type-aliases-package: common.domain
+
+
+#应该是关闭OpenFeign内置的Hystrix
+feign:
+  hystrix:
+    enabled: false
+
+
+
+#设置feign客户端超时时间(OpenFeign默认支持 ribbon)
+ribbon:
+  #指的是建立连接所用的时间,适用于网络状况正常的情况下,两端连接所用的时间
+  ReadTimeout:  5000
+  #指的是建立连接后从服务器读取到可用资源所用的时间
+  ConnectTimeout: 5000
+
+
+
+
+#暴露所有端点,让nacos能够检测到
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+

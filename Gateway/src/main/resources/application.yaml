@@ -1,0 +1,60 @@
+server:
+  port: 9527
+spring:
+  application:
+    name: cloud-gateway
+
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          #开启从注册中心动态创建路由的功能,利用微服务名进行路由
+          enabled: true
+      routes:
+        #下面的意思就是如果有人想访问 http://localhost:8001/payment/get/** 这个地址,当前网关挡在前面
+        #访问 http://localhost:9527/payment/get/1 就是访问 http://localhost:8001/payment/get/1
+
+        - id: payment_routh                   #路由的ID，没有固定规则但要求唯一，建议配合服务名
+          #uri: http://localhost:8001         #匹配后提供服务的路由地址(直接把url写死)
+          uri: lb://cloud-login     #匹配后提供服务的路由地址(url用的是微服务的名,lb是负载均衡的意思)
+          predicates:
+            - Path=/            #断言,路径相匹配的进行路由(** 代表可以是任意的一层或多层目录,前后不能有东西,必须单独使用)
+
+    nacos:
+      discovery:
+        #配置Nacos地址
+        server-addr: localhost:8848
+
+
+  redis:
+    #    url: redis://@192.168.200.139:6400
+    url: redis://wsjgb8080@1.15.73.202:6379
+    client-type: jedis                   #jedis是redis的java客户端,还可以切换成 Lettuce
+    jedis:
+      pool:
+        max-active: 10
+
+
+
+  #发邮件用到的
+  mail:
+    username: 2501956263@qq.com
+    password: zuxxmukhhygxecfa
+    host: smtp.qq.com
+    #开启ssl安全连接
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+
+
+
+    #暴露所有端点,让nacos能够检测到
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+

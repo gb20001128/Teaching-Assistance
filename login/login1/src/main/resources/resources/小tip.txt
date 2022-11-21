@@ -1,0 +1,52 @@
+   •  Cookie：   cookie里面有很多的这个键值对,可能一个网站对一个新用户返回cookie时,那个cookie也只是一个键值对，
+某个网站就是通过这请求标头上 的众多键值对的某个键值对,验证你身份
+
+    • thymeleaf：xmlns:th="http://www.thymeleaf.org"
+
+    •将一个类与配置文件关联起来，并放在容器中：
+                                                        1、@Component + @ConfigurationProperties（“boy”）
+                                                        2、@EnableConfigurationProperties（“Boy.class”）+ @ConfigurationProperties（“boy”）
+    • yy：拷贝当前行 
+      5yy：拷贝当前5行
+      dd：删除当前行 
+      5dd：删除当前行向下的5行 
+      查找某个单词，输入“ / ”查找内容，按n查找下一个 
+      设置文件行号：set nu，取消文件行号：set nonu
+      编辑文件，正常模式下使用快捷键到达文档最末行：G，最首行：gg
+      撤销输入：在正常模式下输入u
+      编辑文件，光标移动到某行：shift+g
+      显示行号：set nu
+      输入行号这个数
+      输入shift+g
+
+     • 禁用Linux的防火墙：systemctl stop firewalld  
+
+     • Filter 、Interceptor 几乎拥有相同的功能
+          1. Filter是Servlet定义的原生组件,好处:脱离了Spring应用也能使用
+          2.Interceptor是Spring定义的接口,可以使用Spring的自动装配等功能
+
+     • 开启RabbitMQ服务：/sbin/service rabbitmq-server start
+
+     • 开启Redis服务: redis-server   /myredis/redis6400.conf
+                               redis-cli -p 6400
+                               auth 密码
+
+     • 开启Nginx服务: systemctl  start nginx
+
+      •  区别：
+                 @RequestAttribute注解的参数在项目里是自己解析出来的,并不是前端传递的
+                 @RequestParam注解则表示这个参数是通过前端传递过来的,如果请求里没有这个参数，则会报错400 Bad Request
+  
+      •   执行以下命令 开放端口
+                 firewall-cmd --zone=public --add-port=3306/tcp --permanent
+                 firewall-cmd --reload
+
+      •   后台启动jar : nohup java -jar springboot_yx-0.0.1-SNAPSHOT.jar  >/dev/null 2>&1&
+
+      •   启动zookeeper: cd /opt/module/zookeeper-3.5.7/bin  
+                          ./zkServer.sh start               开启服务端
+			  ./zkCli.sh                        开启客户端
+
+
+
+      •   登录mysql:     mysql -h localhost -u root -P 3306 -p  然后输入密码即可

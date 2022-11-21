@@ -1,0 +1,20 @@
+                                                             完整格式：                                                   
+                                                                                             select  字段           如果所有字段前出现distinct，则代表查询出来的"多字段的值"不能重复(多字段的值，即一整条记录不能重复）
+                                                                                             from   表名
+                                                                                             where …….
+                                                                                             group by ……..
+                                                                                             having …….
+                                                                                             order by    字段    asc（升序，默认）
+                                                                                                                          desc（降序）
+                                                                                              limit   2      取前2条数据
+                                                                                                        1, 2  从第2条开始取2条数据 
+                    
+
+
+                                                              执行顺序 ：              from
+                                                                                             where
+                                                                                             group by                     
+                                                                                             having
+                                                                                             select 
+                                                                                             order by
+                                                                                              limit

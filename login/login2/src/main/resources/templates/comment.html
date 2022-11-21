@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学习社区</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/community1.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}" />
+    <script src="https://cdn.jsdelivr.net/npm/wangeditor@latest/dist/wangEditor.min.js"></script>
+
+
+    <style>
+        #like{
+            font-size: 1.5rem;
+        }
+        #like:hover{
+            font-size: 1.8rem;
+        }
+
+        #delete{
+            font-size: 1.5rem;
+            color: red;
+            text-decoration: none
+        }
+        #delete:hover{
+            font-size: 1.8rem;
+            color: red;
+            text-decoration: blink;
+        }
+    </style>
+
+</head>
+
+
+
+<body>
+<div th:replace="common :: function1"></div>
+
+    <div class="clearfix"></div>
+
+    <!--主体内容开始-->
+    <div class="body center-block">
+        <div class="body-left">
+            <div class="body-left">
+                <ul>
+                    <li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+                    <li ><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+                    <li ><a th:href="@{/documentResources}"><span
+                            class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+                    <li class="li-active"><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+                    </li>
+                    <li><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+                    <li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="body-right">
+            <div class="body-r-box">
+                <div class="body-r-question">
+                    <div style="overflow: auto; height: 100%; padding-top: 20px;">
+                        <div class="question">
+                            <div class="whitebody">
+                                <div class="comment_lists">
+                                    <dl>
+                                        <dd class="name" value="hahah">
+                                            <div th:text="${problem.name}" class="forname"
+                                                        style="font-size: 2.5rem;color:rgb(42 52 66);top: 7px;">
+                                             名字
+                                            </div>
+                                            <div th:text="${problem.time}" class="questiontime"  ></div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div th:text="${problem.content}" class="forwords"
+                                                        style="font-size: 1.6rem;">
+                                   问题内容
+                                </div>
+                                <br>
+                                <div  class="forimgs" style="width: 200px">
+                                    <img th:src="@{'https://gb--bucket.oss-cn-nanjing.aliyuncs.com/study_problem/'+${problem.photoName}}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div  class="answer">
+                            <div class="answer-item" >
+                                <div  th:each="comment,stat:${problem.comments}" class="answer-comment">
+                                    <div class="answer-comment-item">
+                                        <div class="comment-info">
+                                            <div class="question-rigth">
+                                                <span  th:text="${comment.name}"></span>
+                                                <span  th:text="${comment.time}" class="questiontimes" style="font-size: 1.3rem;color:#9c9999; "></span>
+                                            </div>
+                                            <span  th:text="${comment.content}" class="comment_p">
+
+                                            </span>
+                                            <a id="like" style="float: right;"
+                                               th:href="@{'/like/'+${comment.id}+'/'+${problem.id}}">赞</a>
+                                            <span style="float: right" >&nbsp;&nbsp;</span>
+                                            <span style="float: right"
+                                                  th:if="${comment.likes ne 0}"
+                                                  th:text="${comment.likes}">
+                                            </span>
+                                            <span style="float: right" >&nbsp;&nbsp;</span>
+                                            <span style="float: right"
+                                                  th:if="${session.userName eq comment.name}">
+                                                <a id="delete"
+                                                   th:href="@{'/deleteMyComment/'+${comment.id}+'/'+${problem.id}}">删除</a>
+                                            </span>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="comment-edit" id="">
+                                    <form action="" method="post">
+                                        <p>
+                                            <input type="text" class="form-control" value="test001"
+                                                placeholder="请输入你的回答" />
+                                            <button type="submit" class="btn btn-info" style="margin-bottom: 4px;">
+                                                <!--id="publish-new"-->>我要回答</button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="body-r-answer">
+
+                    <p>
+
+                    <div id="div2" style="width: 85%;display: inline-block">
+
+                    </div>
+
+
+                    <form method="post"  th:action="@{/answerQuestion}" >
+                        <input type="hidden" th:value="${problem.id}" id="hiddenId" name="id">
+                        <textarea id="text1" name="content"   style="display: none"></textarea>
+                        <button  type="submit" class="btn btn-info an-btn" id="publish-new">我要回答</button>
+                    </form>
+
+
+
+
+
+
+                    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+                    <!-- 引入 wangEditor.min.js -->
+                    <script type="text/javascript">
+                        const E = window.wangEditor
+                        const editor = new E('#div2')
+                        const $text1 = $('#text1')
+                        editor.config.placeholder='请输入...'
+
+                        editor.config.onchange = function (html) {
+                            // 第二步，监控变化，同步更新到 textarea
+                            $text1.val(html)
+                        }
+                        editor.create()
+
+                        // 第一步，初始化 textarea 的值
+                        $text1.val(editor.txt.html())
+                    </script>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+
+    <!--底部页脚开始-->
+    <div class="footer"></div>
+    <!--底部页脚结束-->
+
+
+
+
+
+
+</body>
+
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/base.js}" type="text/javascript" charset="utf-8"></script>
+<script th:src="@{/js/wangEditor.min.js}" type="text/javascript" charset="utf-8"></script>
+
+
+
+</html>
+
+<script th:src="@{/js/jquery-1.7.2.js}"></script>
+
+

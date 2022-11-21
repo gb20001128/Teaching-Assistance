@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>成绩修改</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/manage.css}" />
+</head>
+
+
+
+<body>
+<div th:replace="common :: function1"></div>
+
+	<div class="clearfix"></div>
+
+	<!--主体内容开始-->
+	<div class="body center-block">
+		<div class="body-left">
+			<div class="body-left">
+				<ul>
+					<li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+					<li ><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+					<li ><a th:href="@{/documentResources}"><span
+							class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+					<li><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+					</li>
+					<li ><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+					<li class="li-active"><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="body-right">
+			<div class="body-r-box">
+				<div class="body-r-nav">
+					<ul>
+						<li class="body-r-nav-active"><a>用户管理</a></li>
+						<!--<li><a>黑不溜秋</a></li>
+							<li><a>列表3</a></li>-->
+					</ul>
+					<div class="body-r-nav-r">
+						<div class="search">
+						</div>
+					</div>
+				</div>
+				<div class="body-r-body">
+					<div class="video-box" id="video-box-one">
+						<table class="table table-hover">
+							<tr>
+								<th>用户名</th>
+								<th>帐号类型</th>
+								<!-- <th>创建时间</th> -->
+								<th th:if="${result eq 1}">修改密码</th>
+								<!-- <th>删除用户</th> -->
+							</tr>
+							<tr>
+								<td th:text="${session.userName}"></td>
+								<td th:text="${session.accountType}"></td>
+								<!-- <td>2017-10-02</td> -->
+
+								<td  th:if="${result eq 1}"><a id="changebtn">修改密码</a></td>
+
+								<!-- <td><a>删除</a></td> -->
+							</tr>
+						</table>
+					</div>
+
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<div class="video-box" id="video-box-two" style="display: block;">
+						<table class="table table-hover">
+							<tr>
+								<th>学号</th>
+								<th>姓名</th>
+								<th>性别</th>
+								<th>年龄</th>
+								<th>联系方式</th>
+								<th>住址</th>
+
+							</tr>
+							<tr>
+								<td>20191071</td>
+								<td>金帅</td>
+								<td>男</td>
+								<td>21</td>
+								<td>13927373754</td>
+								<td>浙江省宁波市</td>
+							</tr>
+							<tr>
+								<td>20191072</td>
+								<td>顾童</td>
+								<td>女</td>
+								<td>22</td>
+								<td>159272737140</td>
+								<td>福建省福州市</td>
+							</tr>
+							<tr>
+								<td>20191073</td>
+								<td>董单</td>
+								<td>男</td>
+								<td>21</td>
+								<td>18228366751</td>
+								<td>甘肃省天水市</td>
+							</tr>
+							<tr>
+								<td>20191074</td>
+								<td>张杰</td>
+								<td>男</td>
+								<td>20</td>
+								<td>13827883752</td>
+								<td>辽宁省沈阳市</td>
+							</tr>
+							<tr>
+								<td>20191075</td>
+								<td>曹静</td>
+								<td>女</td>
+								<td>22</td>
+								<td>138275737148</td>
+								<td>吉林省吉林市</td>
+							</tr>
+							<tr>
+								<td>20191076</td>
+								<td>杨才</td>
+								<td>男</td>
+								<td>21</td>
+								<td>19977973782</td>
+								<td>贵州省遵义市</td>
+							</tr>
+							<tr>
+								<td>20191077</td>
+								<td>李余</td>
+								<td>男</td>
+								<td>20</td>
+								<td>16929973731</td>
+								<td>湖北省黄石市</td>
+							</tr>
+							<tr>
+								<td>20191078</td>
+								<td>王飞</td>
+								<td>男</td>
+								<td>20</td>
+								<td>17395813848</td>
+								<td>河南省洛阳市</td>
+							</tr>
+							<tr>
+								<td>20191079</td>
+								<td>房奋</td>
+								<td>男</td>
+								<td>21</td>
+								<td>1974731924</td>
+								<td>江苏省南通市</td>
+							</tr>
+
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+	<!--主体内容结束-->
+
+	<!--底部页脚开始-->
+	<div class="footer"></div>
+	<!--底部页脚结束-->
+
+	<!--用户信息开始-->
+	<div class="mask" id="mask">
+		<div class="mask-box" id="mask-box">
+			<div class="content">
+				<form   method="post"><!--th:action="@{/updatePassWord}"-->
+					<p><span>帐号类型：</span><span th:text="${session.accountType}"> </span></p>
+					<p><span>用户名： </span><span th:text="${session.userName}"> </span></p>
+					<p><span>修改密码</span></p>
+					<p><input type="text" name="newPassWord" class="form-control" id="exampleInputEmail1" placeholder="设置新密码"></p>
+					<p><input type="text" name="confirmPassWord"class="form-control" id="exampleInputEmail1" placeholder="确认新密码"></p>
+					<p><button type="submit" id="updatePass" class="btn btn-info">确认提交</button><button type="button" id="exit"
+							class="btn btn-danger">退出</button></p>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<!--用户信息结束-->
+
+
+
+</body>
+
+<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+	var changemask = document.getElementById('mask');
+	var changemaskbox = document.getElementById('mask-box');
+
+	var changebtn = document.getElementById('changebtn');
+	changebtn.onclick = function () {
+		changemask.style.display = 'block';
+		changemaskbox.style.display = 'block';
+	}
+</script>
+
+</html>
+
+
+<script th:src="@{/js/jquery-1.7.2.js}"></script>
+
+
+<!--ajax判断用户昵称是否已存在-->
+<script type="text/javascript">
+	//页面加载完成之后
+	$(function () {
+		$("#updatePass").click(function () {
+
+			var code1 = document.getElementsByName('newPassWord');
+			var code2 = document.getElementsByName('confirmPassWord');
+
+			let pass1 = code1[0].value;
+			let pass2 = code2[0].value;
+
+			$.getJSON("http://gb8888.com:81/updatePassWord/" + pass1+"/"+pass2, null, function (data) {
+
+				if (data) {
+					alert("修改密码成功！");
+					alert("修改密码成功！");
+					alert("修改密码成功！");
+
+
+				} else {
+					alert("修改密码失败！\n两个密码不一致或密码不符合格式");
+				}
+			});
+		});
+	});
+</script>

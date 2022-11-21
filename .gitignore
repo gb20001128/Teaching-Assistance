@@ -1,0 +1,7 @@
+# Project exclude paths
+/api-commons/target/
+/core/core1/target/
+/core/core2/target/
+/Gateway/target/
+/login/login1/target/
+/login/login2/target/

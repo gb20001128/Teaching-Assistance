@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.core.mapper.ProblemMapper">
+
+
+    <!--学生老师关系是多对一的xml配置的方式一:
+                                  按照结果嵌套查询:-->
+    <select id="getProblem" resultMap="ProblemComment">
+        select p.id pid,p.name pname,p.content pc,p.photo_name ppn,p.time pt,
+               c.id cid,c.name cname,c.content cc,c.likes cl,c.time ct
+        from t_problem p,t_comment c
+        where p.id=c.pid and p.id =#{pid} order by cl desc,cid
+    </select>
+
+    <resultMap id="ProblemComment" type="problem">
+        <result property="id" column="pid"/>
+        <result property="name" column="pname"/>
+        <result property="content" column="pc"/>
+        <result property="photoName" column="ppn"/>
+        <result property="time" column="pt"/>
+        <!--复杂的属性,我们需要单独处理 对象:association  集合: collection
+             javaType="" 指定属性的类型!
+              集合中的泛型类型,我们使用ofType获取
+              还是那样,就是执行完整的sql,把查询后的表执行出来了,这个表对应的是Teacher类型,表中的字段按照映射规则
+                把值赋给了对应的Teacher里的属性,只不过字段值也赋给了student属性(集合)里的属性-->
+        <collection property="comments" ofType="comment">
+            <result property="id" column="cid"/>
+            <result property="name" column="cname"/>
+            <result property="content" column="cc"/>
+            <result property="likes" column="cl"/>
+            <result property="time" column="ct"/>
+            <result property="pid" column="pid"/>
+        </collection>
+    </resultMap>
+
+
+</mapper>

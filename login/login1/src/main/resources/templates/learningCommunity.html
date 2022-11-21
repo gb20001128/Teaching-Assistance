@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html  lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>学习社区</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/base.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap-theme.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/community1.css}">
+
+
+</head>
+
+
+
+<body>
+<div th:replace="common :: function1"></div>
+
+    <div class="clearfix"></div>
+
+    <!--主体内容开始-->
+    <div class="body center-block">
+        <div class="body-left">
+            <ul>
+                <li ><a th:href="@{/teacherNotice}"><span class="glyphicon  glyphicon-user"></span>教师通知</a></li>
+                <li><a th:href="@{/course}"><span class="glyphicon  glyphicon-duplicate"></span>课程安排</a></li>
+                <li ><a th:href="@{/documentResources}"><span
+                        class="glyphicon glyphicon-folder-open"></span>课件资源</a></li>
+                <li class="li-active"><a th:href="@{/learningCommunity}"><span class="glyphicon  glyphicon-home"></span>学习社区</a>
+                </li>
+                <li><a th:href="@{/grade}"><span class="glyphicon  glyphicon-list-alt"></span>成绩统计</a></li>
+                <li><a th:href="@{/userManage}"><span class="glyphicon  glyphicon-cog"></span>用户管理</a></li>
+            </ul>
+        </div>
+        <div class="body-right" style="width: 930px;">
+            <div class="body-r-box">
+                <div class="body-r-nav">
+                    <ul>
+                        <li class="body-r-nav-active"><a>社区</a></li>
+                        <li><a>发布新贴</a></li>
+                        <li></li>
+                        <li th:text="${msg}" style="color: red;font-size: 1.5rem;"></li>
+                        <a th:href="@{/learningCommunity}"> <button type="button" class="btn btn-info">刷新</button></a>
+                    </ul>
+                    <div class="body-r-nav-r">
+                        <div class="search">
+                            <div class="input-group">
+                                <form th:action="@{/learningCommunity}" method="post">
+                                <input type="text" class="form-control" placeholder="搜索相关问题"
+                                    aria-describedby="basic-addon2" name="searchWhat">
+                                <!--<span class="input-group-addon glyphicon glyphicon-search" id="basic-addon2"></span>-->
+                                <button type="submit" class="btn btn-default" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                                </form>
+                                <!--<span class="glyphicon glyphicon-search"></span>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="body-r-body" style="height: 570px;">
+                    <div class="video-box" id="video-box-one">
+                        <div th:each="problem,stat:${page.records}" class="greydiv">
+                            <!-- 张三 -->
+                            <div class="whitebody">
+                                <div class="comment_lists">
+                                    <dl>
+                                        <dd class="name" value="hahah">
+                                            <div th:text="${problem.name}" class="forname"
+                                                              style="margin-left: 65px;position: absolute; top: 10px;margin-bottom: -10px;font-size: 2rem">
+                                               姓名
+                                            </div>
+                                            <div th:text="${problem.time}" class="questiontime"
+                                                               style="position: absolute;font-size: 12px;color: #9c9999;margin-left: 150px;top: 10px;">
+                                                2017-10-11 26:02
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="forwords" style="margin-top: -7px;margin-bottom: 5px;">
+                                    <a th:text="${problem.content}"  th:href="@{'/learningCommunity/'+${problem.id}}">
+                                        内容
+                                    </a>
+                                </div>
+                                <div class="forimgs" style="height: 140px">
+<!--                                    <img th:src="${problem.photoName}" alt="">-->
+                                    <img th:src="@{'http://localhost:8080/problem/'+${problem.photoName}}" alt="">
+                                </div>
+                                <a th:href="@{'/learningCommunity/'+${problem.id}}" target="_blank" class="comments" style="margin-left: 20px">评论</a>
+                                <a th:href="@{'/deletelearningCommunity/'+${problem.id}+'/'+${problem.name}}" target="_blank" class="comments" onclick="javascript:return del();">删除</a>
+                            </div>
+
+
+
+                        </div>
+                        <!-- 底部导航 -->
+                        <div class="page1">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination" style="margin: 0;position: fixed;left: 744px; top: 674px; ">
+                                    <li>
+                                        <a th:href="@{/learningCommunity(pn=${page.current-1})}" aria-label="Previous">
+                                            <span>&laquo;</span>
+                                        </a>
+                                    </li>
+                                    <li th:class="${num==page.current?'active':''}" th:each="num:${#numbers.sequence(1,page.pages)}">
+                                        <a th:href="@{/learningCommunity(pn=${num})}">[[${num}]]</a></li>
+                                    <li>
+                                        <a th:href="@{/learningCommunity(pn=${page.current+1})}" aria-label="Next">
+                                            <span>&raquo;</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+
+                    </div>
+
+                    <!-- 发布新帖 -->
+                    <div class="video-box" id="video-box-two" style="display: none;">
+
+
+                        <form th:action="@{uploadProblem}" method="post"  enctype="multipart/form-data">
+                        <textarea name="problem" id="textarea" cols="100" rows="7" value="haha" placeholder="请输入您的文字介绍..."
+                            style="font-size: 14px; resize: none;"></textarea>
+
+                        <div class="forshangchuan">
+                            <input type="file" name="problemPhoto" id="upload-input" style="position: absolute; opacity: 0;"
+                                accept="image/jpg,image/png,image/jpeg" onchange="showImg(this)">
+                            <button id="changePic" class="btn btn-danger">上传图片</button>
+                        </div>
+                        <div id="forpre">
+                            <img style="height: 200px" id="preview" alt="" />
+                        </div>
+                        <button type="submit" id="shangchuan" class="btn btn-info">提交问题</button>
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+
+    <!--底部页脚开始-->
+    <div class="footer"></div>
+    <!--底部页脚结束-->
+
+    <!--用户信息开始-->
+    <div class="mask" id="mask">
+        <div class="mask-box" id="mask-box">
+            <div class="content">
+                <form action="" method="post">
+                    <p><span>帐号类型：</span><span> 学生帐号</span></p>
+                    <p><span>用户名： </span><span> 123</span></p>
+                    <p><span>修改密码</span></p>
+                    <p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="设置新密码"></p>
+                    <p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="确认新密码"></p>
+                    <p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="exit"
+                            class="btn btn-danger">退出</button></p>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--用户信息结束-->
+
+    <!--登录框开始-->
+    <div class="login-box" id="login-box">
+        <div class="login">
+            <form action="" method="post">
+                <p><span>用户登录</span></p>
+
+                <p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入用户名"></p>
+                <p><input type="text" class="form-control" id="exampleInputEmail1" placeholder="请输入密码"></p>
+                <p><button type="submit" class="btn btn-info">确认提交</button><button type="button" id="login-exit"
+                        class="btn btn-danger">退出</button></p>
+            </form>
+        </div>
+    </div>
+    <!--登录框结束-->
+</body>
+
+<script src="js/jquery-3.0.0.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/base.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/wangEditor.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var publish_exit = document.getElementById("publish-exit");
+    var mask = document.getElementById("mask");
+    var publish_box = document.getElementById("publish-box");
+    var publish = document.getElementById("publish");
+
+
+    publish.addEventListener("click", function () {
+        mask.style.display = "block";
+        publish_box.style.display = "block";
+    });
+
+    publish_exit.addEventListener("click", function () {
+        mask.style.display = "none";
+        publish_box.style.display = "none";
+    });
+
+    var publish_new = document.getElementById("publish-new");
+    publish_new.addEventListener("click", function () {
+        //			alert(editor.txt.html());
+    });
+
+    function Submit() {
+
+    }
+
+</script>
+
+<script type="text/javascript">
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('#editor') )
+    editor.create()
+</script>
+
+<!-- 发布新贴 -->
+<script>
+    function showImg(input) {
+        var file = input.files[0];
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $("#preview").attr("src", e.target.result);
+        }
+        reader.readAsDataURL(file);
+        console.log(file);
+    }
+</script>
+
+</html>
+
+<script type="text/javascript">
+
+    function del() {
+        var msg = "删除不可恢复\n您确定要删除吗 ?";
+        if (confirm(msg) == true) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+</script>

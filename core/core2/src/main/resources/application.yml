@@ -1,0 +1,78 @@
+#server:
+#  port: 8003
+#
+#spring:
+#  application:
+#    name: cloud-core
+#
+#  #配置Nacos
+#  cloud:
+#    nacos:
+#      discovery:
+#        #配置Nacos地址
+#        server-addr: localhost:8848
+#
+#
+#
+#
+#  # 配置数据源信息
+#  datasource:
+#    # 配置数据源类型
+#    type: com.zaxxer.hikari.HikariDataSource
+#    # 配置连接数据库信息
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://1.15.73.202:3306/graduation_project?characterEncoding=utf-8&useSSL=false
+#    username: root
+#    password: e7000e857573dec6
+#
+#
+#
+#  redis:
+#    #    url: redis://@192.168.200.139:6400
+#    url: redis://wsjgb8080@1.15.73.202:6379
+#    client-type: jedis                   #jedis是redis的java客户端,还可以切换成 Lettuce
+#    jedis:
+#      pool:
+#        max-active: 10
+#
+#
+#
+#  servlet:
+#    multipart:
+#      max-file-size: 20MB
+#      max-request-size: 100MB
+#
+#
+#
+##mybatis-plus的配置
+#mybatis-plus:
+#  configuration:
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   #开启SQL日志打印
+#
+#  #设置MyBatis-Plus的全局配置
+#  global-config:
+#    db-config:
+#      table-prefix: t_                                       #设置实体类所对应的表的统一前缀(t_实体类名=表名)
+#      #id-type: auto                                          #设置统一的主键生成策略(自动递增)
+#
+#  #配置类型别名所对应的包(包下所有实体类的别名是类名)
+#  type-aliases-package: common.domain
+#
+#
+##应该是关闭OpenFeign内置的Hystrix
+#feign:
+#  hystrix:
+#    enabled: false
+#
+#
+#
+##暴露所有端点,让nacos能够检测到
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#
+#
+#
+#
